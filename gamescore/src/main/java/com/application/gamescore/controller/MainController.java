@@ -11,7 +11,6 @@ public class MainController {
 		return "gamescore/index";
 	}
 	
-	// layout.html 테스트
 	@GetMapping("/layout")
 	public String layout() {
 		return "common/layout";
