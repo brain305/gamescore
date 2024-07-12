@@ -11,11 +11,6 @@ public class MainController {
 		return "gamescore/index";
 	}
 	
-	@GetMapping("/layout")
-	public String layout() {
-		return "common/layout";
-	}
-	
 	@GetMapping("/cart")
 	public String cart() {
 		return "gamescore/cart";

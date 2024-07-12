@@ -48,7 +48,6 @@
 
 						document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
 						document.getElementById('roadAddress').value = fullRoadAddr;
-						document.getElementById('jibunAddress').value = data.jibunAddress;
 
 					}
 				}).open();
@@ -107,9 +106,9 @@
 								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{login}">Login</a></li>
+										th:href="@{user/login}">Login</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{register}">Register</a></li>
+										th:href="@{user/register}">Register</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{tracking-order}">Tracking</a></li>
 								</ul></li>
@@ -125,7 +124,7 @@
 									<i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span>
 								</button></li>
 							<li class="nav-item"><a class="button button-header"
-								th:href="@{login}">Login / Register</a></li>
+								th:href="@{user/login}">Login / Register</a></li>
 						</ul>
 					</div>
 				</div>

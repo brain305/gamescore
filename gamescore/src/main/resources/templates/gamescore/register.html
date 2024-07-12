@@ -5,37 +5,36 @@
 
 <head>
 <meta charset="UTF-8">
-</head>
 <script>
-
-
-
 	$().ready(function() {
-		
+
+		let idCheck = "";
+
 		$("#checkDuplicatedId").click(function() {
+			let userNm = $("#userNm").val();
 
-			let memberId = $("#memberId").val();
-			
-		    if (memberId == ""){
-		   		alert("ID를 입력하세요");
-		   		return;
-		    }
-		    else{
-		    	alert("뭐가 문제야");
-		    	return;
-		    }
+			$.ajax({
+				url : "/user/checkDuplicatedId",
+				type : "post",
+				data : {
+					"userNm" : userNm
+				},
+				success : function(result) {
+					if ($("#userNm").val() == "") {
+						alert("ID를 입력하세요");
+					} else if (result == "duplicate") {
+						idCheck = "Y";
+						alert("사용할 수 있는 ID입니다.");
+						console.log(idCheck);
 
-			/* $.ajax({
-
-				url : "",
-				type : "",
-				data : {},
-				success : function() {
-
+					} else {
+						alert("사용할 수 없는 ID입니다.");
+						idCheck = "N";
+						console.log(idCheck);
+					}
 				}
-
 			});
-			 */
+
 		});
 
 		/* $.ajax({
@@ -49,20 +48,29 @@
 			
 		}); */
 
-		// 비밀번호 확인 로직
-		/* $("form").submit(function() {
+		// 아이디, 비밀번호 확인 로직
+		$("form").submit(function() {
+			if (idCheck == "Y") {
+				return true;
 
-			if ($("#password").val() != $("#confirmPassword").val()) {
-				alert("비밀번호를 확인하세요.");
-				$("#password").focus();
+			} else if (idCheck == "N") {
+				alert("ID중복체크를 해주세요");
+				$("#userId").focus();
 				return false;
 			}
-			
 
-		}); */
+			if ($("#userPw").val() != $("#confirmPassword").val()) {
+				alert("비밀번호를 확인하세요.");
+				$("#userPw").focus();
+				return false;
+			}
+
+		});
 
 	});
 </script>
+</head>
+
 <body>
 
 	<div layout:fragment="content">
@@ -103,31 +111,33 @@
 					<div class="col-lg-6">
 						<div class="login_form_inner register_form_inner">
 							<h3>Create an account</h3>
-							<form class="row login_form" th:action="@{/gamescore/register}"
+							<form class="row login_form" th:action="@{/user/register}"
 								method="post" id="register_form">
 								<div class="col-md-12 form-group">
-									<input type="text" class="form-control" id="memberId"
-										name="memberId" placeholder="아이디를 입력하세요"
+									<input type="text" required class="form-control" id="userNm"
+										name="userNm" placeholder="아이디를 입력하세요"
 										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '아이디를 입력하세요'"> <input
+										onblur="this.placeholder = '아이디를 입력하세요'"
+										style="background-color: transparent;"> <input
 										type="button" id="checkDuplicatedId" value="중복확인">
 								</div>
 
 
 								<div class="col-md-12 form-group">
-									<input type="text" class="form-control" id="email" name="email"
-										placeholder="Email을 입력하세요" onfocus="this.placeholder = ''"
+									<input type="text" required class="form-control" id="email"
+										name="email" placeholder="Email을 입력하세요"
+										onfocus="this.placeholder = ''"
 										onblur="this.placeholder = 'Email을 입력하세요'">
 								</div>
 								<div class="col-md-12 form-group">
-									<input type="text" readonly class="form-control" id="zipcode"
-										name="zipcode" placeholder="우편번호 입력"
+									<input type="text" readonly required class="form-control"
+										id="zipcode" name="zipcode" placeholder="우편번호 입력"
 										style="background-color: transparent;"
 										onblur="this.placeholder = '우편번호 입력'"><input
 										type="button" th:onclick="execDaumPostcode();" value="우편번호 검색">
 								</div>
 								<div class="col-md-12 form-group">
-									<input type="text" readonly class="form-control"
+									<input type="text" required readonly class="form-control"
 										id="roadAddress" name="roadAddress" placeholder="도로명 주소"
 										style="background-color: transparent;"
 										onblur="this.placeholder = '도로명 주소'">
@@ -135,20 +145,20 @@
 
 
 								<div class="col-md-12 form-group">
-									<input type="text" class="form-control" id="address"
+									<input type="text" required class="form-control" id="address"
 										name="address" placeholder="상세 주소를 입력하세요"
 										style="background-color: transparent;"
 										onfocus="this.placeholder = ''"
 										onblur="this.placeholder = '상세 주소를 입력하세요'">
 								</div>
 								<div class="col-md-12 form-group">
-									<input type="password" class="form-control" id="password"
-										name="password" placeholder="비밀번호를 입력하세요"
+									<input type="password" required class="form-control"
+										id="userPw" name="userPw" placeholder="비밀번호를 입력하세요"
 										onfocus="this.placeholder = ''"
 										onblur="this.placeholder = '비밀번호를 입력하세요'">
 								</div>
 								<div class="col-md-12 form-group">
-									<input type="password" class="form-control"
+									<input type="password" required class="form-control"
 										id="confirmPassword" name="confirmPassword"
 										placeholder="비밀번호 확인" onfocus="this.placeholder = ''"
 										onblur="this.placeholder = '비밀번호 확인'">확인되면 ajax로 확인 표시
