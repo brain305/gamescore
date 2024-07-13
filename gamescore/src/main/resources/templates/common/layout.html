@@ -25,32 +25,31 @@
 	th:src="@{http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js}"></script>
 <script>
 	function execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
+		new daum.Postcode({
+			oncomplete : function(data) {
 
-						var fullRoadAddr = data.roadAddress;
-						var extraRoadAddr = '';
+				var fullRoadAddr = data.roadAddress;
+				var extraRoadAddr = '';
 
-						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-							extraRoadAddr += data.bname;
-						}
-						if (data.buildingName !== '' && data.apartment === 'Y') {
-							extraRoadAddr += (extraRoadAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						if (extraRoadAddr !== '') {
-							extraRoadAddr = ' (' + extraRoadAddr + ')';
-						}
-						if (fullRoadAddr !== '') {
-							fullRoadAddr += extraRoadAddr;
-						}
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraRoadAddr += data.bname;
+				}
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraRoadAddr += (extraRoadAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+				}
+				if (extraRoadAddr !== '') {
+					extraRoadAddr = ' (' + extraRoadAddr + ')';
+				}
+				if (fullRoadAddr !== '') {
+					fullRoadAddr += extraRoadAddr;
+				}
 
-						document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('roadAddress').value = fullRoadAddr;
+				document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
+				document.getElementById('roadAddress').value = fullRoadAddr;
 
-					}
-				}).open();
+			}
+		}).open();
 	}
 </script>
 
@@ -115,17 +114,33 @@
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{contact}">Contact</a></li>
 						</ul>
+						<th:block th:if="${session.userNm == null }">
+							<ul class="nav-shop">
+								<li class="nav-item"><button>
+										<i class="ti-search"></i>
+									</button></li>
+								<li class="nav-item"><button>
+										<i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span>
+									</button></li>
 
-						<ul class="nav-shop">
-							<li class="nav-item"><button>
-									<i class="ti-search"></i>
-								</button></li>
-							<li class="nav-item"><button>
-									<i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span>
-								</button></li>
-							<li class="nav-item"><a class="button button-header"
-								th:href="@{user/login}">Login / Register</a></li>
-						</ul>
+								<!-- 세션이용해서 만들기 -->
+
+								<li class="nav-item"><a class="button button-header"
+									th:href="@{user/login}">Login / Register</a></li>
+							</ul>
+						</th:block>
+						<th:block th:unless="${session.userNm == null }">
+							<ul class="nav-shop">
+								<li class="nav-item"><button>
+										<i class="ti-search"></i>
+									</button></li>
+								<li class="nav-item"><button>
+										<i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span>
+									</button></li> 
+								<li class="nav-item"><a class="button button-header"
+									th:href="@{/user/logout}">logout</a></li>
+							</ul>
+						</th:block>
 					</div>
 				</div>
 			</nav>

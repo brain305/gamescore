@@ -22,5 +22,13 @@
 			NOW()
 		)
 	</insert>
+	
+	<select id="login" parameterType="String" resultType="userDTO">
+	
+		SELECT *
+		FROM USER
+		WHERE USER_NM = #{userNm}
+		
+	</select>
 
 </mapper>

@@ -34,7 +34,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="login_box_img">
-						<img src="/img/home/eldenRingDlc.jpeg" height="100%">
+						<img th:src="@{/img/home/eldenRingDlc.jpeg}" height="100%">
 						<div class="hover">
 							<h4>New to our website?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of
@@ -46,13 +46,13 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="#/" id="contactForm">
+						<form class="row login_form" th:action="@{/user/login}" method="post" id="contactForm">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username"
+								<input type="text" class="form-control" id="userNm" name="userNm" placeholder="Username"
 									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Password"
+								<input type="password" class="form-control" id="userPw" name="userPw" placeholder="Password"
 									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 

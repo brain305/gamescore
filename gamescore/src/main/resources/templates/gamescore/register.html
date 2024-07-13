@@ -54,13 +54,18 @@
 				return true;
 
 			} else if (idCheck == "N") {
-				alert("ID중복체크를 해주세요");
+				alert("ID가 올바르지 않습니다");
+				$("#userId").focus();
+				return false;
+			}
+			else if(idCheck == ""){
+				alert("ID 중복체크를 해주세요");
 				$("#userId").focus();
 				return false;
 			}
 
 			if ($("#userPw").val() != $("#confirmPassword").val()) {
-				alert("비밀번호를 확인하세요.");
+				alert("비밀번호를 확인하세요");
 				$("#userPw").focus();
 				return false;
 			}
@@ -161,8 +166,7 @@
 									<input type="password" required class="form-control"
 										id="confirmPassword" name="confirmPassword"
 										placeholder="비밀번호 확인" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '비밀번호 확인'">확인되면 ajax로 확인 표시
-									해주기
+										onblur="this.placeholder = '비밀번호 확인'">
 								</div>
 								<div class="col-md-12 form-group">
 									<button type="submit" value="submit"

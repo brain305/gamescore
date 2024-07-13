@@ -12,16 +12,15 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Override
 	public String checkDuplicatedId(String userNm) {
-		if(userDAO.checkDuplicatedId(userNm) == null) {
+		if (userDAO.checkDuplicatedId(userNm) == null) {
 			return "duplicate";
-		}
-		else {
+		} else {
 			return "notDuplicate";
 		}
 	}
@@ -31,5 +30,17 @@ public class UserServiceImpl implements UserService {
 		userDTO.setUserPw(passwordEncoder.encode(userDTO.getUserPw()));
 		userDAO.register(userDTO);
 	}
+
+	@Override
+	public boolean login(UserDTO userDTO) {
+		UserDTO checkExsistId = userDAO.login(userDTO);
+		if (checkExsistId != null) {
+			if (passwordEncoder.matches(userDTO.getUserPw() ,checkExsistId.getUserPw())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 }

@@ -14,5 +14,5 @@ public class UserDTO {
 	private String roadAddress;
 	private String address;
 	private Date createdAt;
-	
+
 }

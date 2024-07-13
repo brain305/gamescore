@@ -8,4 +8,5 @@ import com.application.gamescore.user.dto.UserDTO;
 public interface UserDAO {
 	public String checkDuplicatedId(String memberId);
 	public void register(UserDTO userDTO);
+	public UserDTO login(UserDTO userDTO);
 }
