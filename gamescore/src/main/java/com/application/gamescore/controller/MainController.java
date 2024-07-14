@@ -21,11 +21,6 @@ public class MainController {
 		return "gamescore/single-blog";
 	}
 	
-	@GetMapping("/single-product")
-	public String singleProduct() {
-		return "gamescore/single-product";
-	}
-	
 	@GetMapping("/checkout")
 	public String checkout() {
 		return "gamescore/checkout";
@@ -35,6 +30,12 @@ public class MainController {
 	public String confirmation() {
 		return "gamescore/confirmation";
 	}
+	
+	@GetMapping("/blog")
+	public String blog() {
+		return "gamescore/community";
+	}
+	
 	
 	
 }

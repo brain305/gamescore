@@ -20,15 +20,19 @@
 					<div class="row no-gutters align-items-center pt-60px">
 						<div class="col-5 d-none d-sm-block">
 							<div class="hero-banner__img">
-								<img class="img-fluid" th:src="@{/img/home/eldenRingMain.jpeg}" alt="">
+								<img class="img-fluid" th:src="@{/img/home/eldenRingMain.jpeg}"
+									alt="">
 							</div>
 						</div>
 						<div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
 							<div class="hero-banner__content">
-								<h4>메인 게임 배너</h4>
-								<h1>(예시) 엘든링</h1>
-								<p>엘든링 설명....</p>
-								<a class="button button-hero" href="#">엘든링 설명 화면으로 이동</a>
+								<h4>인기 게임</h4>
+								<h1>Elden Ring</h1>
+								<p>THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be
+									guided by grace to brandish the power of the Elden Ring and
+									become an Elden Lord in the Lands Between.</p>
+								<a class="button button-hero" th:href="@{gameDetail}">Elden Ring
+									보기</a>
 							</div>
 						</div>
 					</div>
@@ -40,8 +44,9 @@
 			<section class="section-margin mt-0">
 				<div class="owl-carousel owl-theme hero-carousel">
 					<div class="hero-carousel__slide">
-						<img th:src="@{/img/home/eldenRingDlc.jpeg}" alt="" class="img-fluid">
-						<a href="#" class="hero-carousel__slideOverlay">
+						<img th:src="@{/img/home/eldenRingDlc.jpeg}" alt=""
+							class="img-fluid"> <a href="#"
+							class="hero-carousel__slideOverlay">
 							<h3>Wireless Headphone</h3>
 							<p>Accessories Item</p>
 						</a>
