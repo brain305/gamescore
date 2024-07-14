@@ -82,14 +82,14 @@
 								role="button" aria-haspopup="true" aria-expanded="false">Game</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{category}">Game List</a></li>
+										th:href="@{/category}">Game List</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{gameDetail}">Game Details</a></li>
+										th:href="@{/gameDetail}">Game Details</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{checkout}">Product Checkout</a></li>
+										th:href="@{/checkout}">Product Checkout</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="confirmation">Confirmation</a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{cart}">Shopping
+									<li class="nav-item"><a class="nav-link" th:href="@{/cart}">Shopping
 											Cart</a></li>
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
@@ -98,21 +98,21 @@
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" th:href="@{blog}">Blog</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{single-blog}">Blog Details</a></li>
+										th:href="@{/single-blog}">Blog Details</a></li>
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
 								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{user/login}">Login</a></li>
+										th:href="@{/user/login}">Login</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{user/register}">Register</a></li>
+										th:href="@{/user/register}">Register</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{tracking-order}">Tracking</a></li>
+										th:href="@{/tracking-order}">Tracking</a></li>
 								</ul></li>
 							<li class="nav-item"><a class="nav-link"
-								th:href="@{contact}">Contact</a></li>
+								th:href="@{/contact}">Contact</a></li>
 						</ul>
 						<th:block th:if="${session.userNm == null }">
 							<ul class="nav-shop">
