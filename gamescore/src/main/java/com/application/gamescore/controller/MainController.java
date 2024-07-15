@@ -11,14 +11,15 @@ public class MainController {
 		return "gamescore/index";
 	}
 	
+	@GetMapping("/layout")
+	public String layout() {
+		return "gamescore/layout";
+	}
+	
+	
 	@GetMapping("/cart")
 	public String cart() {
 		return "gamescore/cart";
-	}
-	
-	@GetMapping("/single-blog")
-	public String singleBlog() {
-		return "gamescore/single-blog";
 	}
 	
 	@GetMapping("/checkout")

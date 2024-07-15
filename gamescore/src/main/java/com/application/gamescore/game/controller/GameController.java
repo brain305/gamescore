@@ -8,7 +8,7 @@ public class GameController {
 	
 	@GetMapping("/gameDetail")
 	public String gameDetail() {
-		return "/gamescore/single-product";
+		return "/gamescore/gameDetail";
 	}
 	
 }
