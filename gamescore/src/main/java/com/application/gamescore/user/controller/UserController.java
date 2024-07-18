@@ -58,9 +58,12 @@ public class UserController {
 		String jsScript = "";
 
 		if (userService.login(userDTO)) {
-
+			
+			long userId = userService.getUserId(userDTO.getUserNm());
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("userNm", userDTO.getUserNm());
+			session.setAttribute("userId", userId);
 			session.setMaxInactiveInterval(60 * 30);
 
 			jsScript = """

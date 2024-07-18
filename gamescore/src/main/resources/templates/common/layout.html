@@ -18,6 +18,8 @@
 	th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
 
 <link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script th:src="@{/ckeditor/ckeditor.js}"></script>
 <!-- 다음 우편번호 검색 api -->
@@ -82,11 +84,7 @@
 								role="button" aria-haspopup="true" aria-expanded="false">Game</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/category}">Game List</a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/gameDetail}">Game Details</a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/checkout}">Product Checkout</a></li>
+										th:href="@{/gameList}">Game List</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/confirmation}">Confirmation</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -94,12 +92,12 @@
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+								role="button" aria-haspopup="true" aria-expanded="false">Community</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/blog}">Blog</a></li>
+										th:href="@{/community}">Community</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/single-blog}">Blog Details</a></li>
+										th:href="@{/single-blog}">Community Details</a></li>
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"

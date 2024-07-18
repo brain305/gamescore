@@ -4,8 +4,56 @@
 	layout:decorate="~{common/layout.html}">
 <head>
 <meta charset="UTF-8">
+<style>
+.star {
+	color: #FFD700;
+	cursor: pointer;
+}
 
+.star.checked {
+	color: #FFD700;
+}
+
+.star.unchecked {
+	color: #FFD700;
+}
+</style>
+<script th:inline="javascript">
+    function rateStars(rating) {
+        let stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('fa-star');
+                star.classList.remove('fa-star-o');
+            } else {
+                star.classList.add('fa-star-o');
+                star.classList.remove('fa-star');
+            }
+        });
+        let calculatedRating = rating * 10;
+        document.getElementById('rating').value = calculatedRating;
+    }
+    
+   		document.addEventListener('DOMContentLoaded', (event) => {
+        let stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => rateStars(index + 1));
+        });
+        
+        document.getElementById('submit').addEventListener('click', function(event) {
+            let isLoggedIn = /*[[${session.userId != null}]]*/ false;
+            if (!isLoggedIn) {
+                event.preventDefault();
+                alert('로그인을 해주세요');
+                window.location.href = '/user/login';
+            }
+        });
+    });
+    
+    
+</script>
 </head>
+
 <body>
 
 
@@ -14,12 +62,12 @@
 		<!-- ================ start banner area ================= -->
 		<section class="blog-banner-area" id="blog">
 			<div class="container h-100">
-				<div class="blog-banner">s
+				<div class="blog-banner">
 					<div class="text-center">
 						<h1>Game Detail</h1>
 						<nav aria-label="breadcrumb" class="banner-breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">Home</li>
+								<li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Game
 									Detail</li>
 							</ol>
@@ -38,7 +86,8 @@
 					<div class="col-lg-6">
 						<div class="owl-carousel owl-theme s_Product_carousel">
 							<div class="single-prd-item">
-								<img class="img-fluid" th:src="@{/img/home/eldenRingMain.jpeg}"
+								<img class="img-fluid"
+									th:src="@{/file/thumbnails(gameImgName=${gameDTO.gameImgName})}"
 									alt="">
 							</div>
 							<!-- <div class="single-prd-item">
@@ -51,14 +100,14 @@
 					</div>
 					<div class="col-lg-5 offset-lg-1">
 						<div class="s_product_text">
-							<h3>Elden Ring</h3>
-							<h2>45,360원</h2>
+							<h3 th:text="${gameDTO.title}"></h3>
+							<h2 th:text="|${gameDTO.price}원|"></h2>
 							<ul class="list">
-								<li><a class="active" href="#"><span>Category</span> :
-										소울류</a></li>
+								<li><a class="active" href="#"><span>Genre</span> : <span
+										th:text="${gameDTO.genre}"></span></a></li>
 								<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 							</ul>
-							<p>엘든링 설명~~</p>
+							<p th:text="${gameDTO.description}">엘든링 설명~~</p>
 
 
 						</div>
@@ -74,24 +123,20 @@
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item"><a class="nav-link" id="home-tab"
 						data-toggle="tab" href="#home" role="tab" aria-controls="home"
-						aria-selected="true">Description</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile" aria-selected="false">Specification</a></li>
-					<li class="nav-item"><a class="nav-link" id="contact-tab"
-						data-toggle="tab" href="#contact" role="tab"
-						aria-controls="contact" aria-selected="false">Comments</a></li>
+						aria-selected="false">Description</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						id="review-tab" data-toggle="tab" href="#review" role="tab"
-						aria-controls="review" aria-selected="false">Reviews</a></li>
+						id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="true">Specification</a></li>
+					<li class="nav-item"><a class="nav-link" id="review-tab"
+						data-toggle="tab" href="#review" role="tab" aria-controls="review"
+						aria-selected="false">Reviews</a></li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
-						<p>엘든링 상세 설명1</p>
-						<p>엘든링 상세 설명2</p>
+						<p th:text="${gameDTO.description}">엘든링 상세 설명1</p>
 					</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel"
+					<div class="tab-pane fade show active" id="profile" role="tabpanel"
 						aria-labelledby="profile-tab">
 						<div class="table-responsive">
 							<table class="table">
@@ -101,7 +146,7 @@
 											<h5>Developer</h5>
 										</td>
 										<td>
-											<h5>FromSoftware Inc.</h5>
+											<h5 th:text="${gameDTO.developer}">FromSoftware Inc.</h5>
 										</td>
 									</tr>
 									<tr>
@@ -109,7 +154,8 @@
 											<h5>Publisher</h5>
 										</td>
 										<td>
-											<h5>FromSoftware Inc. , Bandai Namco Entertainmnet</h5>
+											<h5 th:text="${gameDTO.publisher}">FromSoftware Inc. ,
+												Bandai Namco Entertainmnet</h5>
 										</td>
 									</tr>
 									<tr>
@@ -117,7 +163,7 @@
 											<h5>Release</h5>
 										</td>
 										<td>
-											<h5>2022-02-25</h5>
+											<h5 th:text="${gameDTO.releaseDt}">2022-02-25</h5>
 										</td>
 									</tr>
 									<tr>
@@ -125,7 +171,7 @@
 											<h5>Genre</h5>
 										</td>
 										<td>
-											<h5>Action role-playing</h5>
+											<h5 th:text="${gameDTO.genre}">Action role-playing</h5>
 										</td>
 									</tr>
 									<tr>
@@ -133,7 +179,7 @@
 											<h5>Player</h5>
 										</td>
 										<td>
-											<h5>Single Player</h5>
+											<h5 th:text="${gameDTO.player}">Single Player</h5>
 										</td>
 									</tr>
 									<tr>
@@ -141,15 +187,7 @@
 											<h5>Modes</h5>
 										</td>
 										<td>
-											<h5>Online PvP, Online Co-op</h5>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h5>Support</h5>
-										</td>
-										<td>
-											<h5>xbox-controllers</h5>
+											<h5 th:text="${gameDTO.modes}">Online PvP, Online Co-op</h5>
 										</td>
 									</tr>
 									<tr>
@@ -157,154 +195,29 @@
 											<h5>Steam Deck Compatibility</h5>
 										</td>
 										<td>
-											<h5>Verified</h5>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h5>Available Platform</h5>
-										</td>
-										<td>
-											<h5>PC , PS4 , PS5 , XBOX One , XBOX Series X/S</h5>
+											<h5 th:text="${gameDTO.steamdeckCompatibility}">Verified</h5>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="contact" role="tabpanel"
-						aria-labelledby="contact-tab">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="comment_list">
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img th:src="@{/img/product/review-1.png}" alt="">
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<h5>12th Feb, 2018 at 05:56 pm</h5>
-												<a class="reply_btn" href="#">Reply</a>
-											</div>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud
-											exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-									</div>
-									<div class="review_item reply">
-										<div class="media">
-											<div class="d-flex">
-												<img th:src="@{/img/product/review-2.png}" alt="">
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<h5>12th Feb, 2018 at 05:56 pm</h5>
-												<a class="reply_btn" href="#">Reply</a>
-											</div>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud
-											exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-									</div>
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img src="/img/product/review-3.png" alt="">
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<h5>12th Feb, 2018 at 05:56 pm</h5>
-												<a class="reply_btn" href="#">Reply</a>
-											</div>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud
-											exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="review_box">
-									<h4>Post a comment</h4>
-									<form class="row contact_form" action="contact_process.php"
-										method="post" id="contactForm" novalidate="novalidate">
-										<div class="col-md-12">
-											<div class="form-group">
-												<input type="text" class="form-control" id="name"
-													name="name" placeholder="Your Full name">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<input type="email" class="form-control" id="email"
-													name="email" placeholder="Email Address">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<input type="text" class="form-control" id="number"
-													name="number" placeholder="Phone Number">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<textarea class="form-control" name="message" id="message"
-													rows="1" placeholder="Message"></textarea>
-											</div>
-										</div>
-										<div class="col-md-12 text-right">
-											<button type="submit" value="submit" class="btn primary-btn">Submit
-												Now</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade show active" id="review" role="tabpanel"
+
+					<div class="tab-pane fade" id="review" role="tabpanel"
 						aria-labelledby="review-tab">
 						<div class="row">
 							<div class="col-lg-6">
-								<div class="row total_rate">
+								<div class="row total_rate"
+									style="margin-right: auto; margin-left: auto; justify-content: center">
 									<div class="col-6">
 										<div class="box_total">
-											<h5>평점</h5>
+											<h5>Game Score</h5>
 											<h4>0 ~ 100</h4>
 											<h6>(리뷰 개수)</h6>
 										</div>
 									</div>
-									<div class="col-6">
-										<div class="rating_list">
-											<h3>Based on 3 Reviews</h3>
-											<ul class="list">
-												<li><a href="#">5 Star <i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i> 01
-												</a></li>
-												<li><a href="#">4 Star <i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i> 01
-												</a></li>
-												<li><a href="#">3 Star <i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i> 01
-												</a></li>
-												<li><a href="#">2 Star <i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i> 01
-												</a></li>
-												<li><a href="#">1 Star <i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i> 01
-												</a></li>
-											</ul>
-										</div>
-									</div>
 								</div>
+								<hr>
 								<div class="review_list">
 									<div class="review_item">
 										<div class="media">
@@ -362,36 +275,29 @@
 							<div class="col-lg-6">
 								<div class="review_box">
 									<h4>Add a Review</h4>
-									<p>Your Rating:</p>
+									<p>Your Rating</p>
+									<br>
 									<ul class="list">
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
+										<li th:each="i : ${#numbers.sequence(1, 10)}"><i
+											class="fa fa-star-o fa-lg star"
+											th:onclick="|rateStars(${i})|"></i></li>
 									</ul>
-									<p>Outstanding</p>
-									<form action="#/" class="form-contact form-review mt-3">
-										<div class="form-group">
-											<input class="form-control" name="name" type="text"
-												placeholder="Enter your name" required>
-										</div>
-										<div class="form-group">
-											<input class="form-control" name="email" type="email"
-												placeholder="Enter email address" required>
-										</div>
-										<div class="form-group">
-											<input class="form-control" name="subject" type="text"
-												placeholder="Enter Subject">
-										</div>
+
+									<form th:action="@{/gameDetail}"
+										class="form-contact form-review mt-3" method="post">
+										<input type="hidden" id="rating" name="rating" value="0">
+										<input type="hidden" id="gameId" name="gameId"
+											th:value="${gameDTO.gameId}"> <input type="hidden"
+											id="userId" name="userId" th:value="${session.userId}">
+
 										<div class="form-group">
 											<textarea class="form-control different-control w-100"
-												name="textarea" id="textarea" cols="30" rows="5"
-												placeholder="Enter Message"></textarea>
+												name="reviewText" id="reviewText" cols="30" rows="5"
+												placeholder="Enter Comment"></textarea>
 										</div>
 										<div class="form-group text-center text-md-right mt-3">
 											<button type="submit"
-												class="button button--active button-review">Submit
+												class="button button--active button-review" id="submit">Submit
 												Now</button>
 										</div>
 									</form>

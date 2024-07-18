@@ -9,4 +9,5 @@ public interface UserDAO {
 	public String checkDuplicatedId(String memberId);
 	public void register(UserDTO userDTO);
 	public UserDTO login(UserDTO userDTO);
+	public long getUserId(String userNm);
 }

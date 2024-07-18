@@ -22,21 +22,10 @@ public class MainController {
 		return "gamescore/cart";
 	}
 	
-	@GetMapping("/checkout")
-	public String checkout() {
-		return "gamescore/checkout";
-	}
 	
 	@GetMapping("/confirmation")
 	public String confirmation() {
 		return "gamescore/confirmation";
 	}
-	
-	@GetMapping("/blog")
-	public String blog() {
-		return "gamescore/community";
-	}
-	
-	
 	
 }

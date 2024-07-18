@@ -30,5 +30,12 @@
 		WHERE USER_NM = #{userNm}
 		
 	</select>
+	
+	<select id="getUserId" parameterType="String" resultType="long">
+		SELECT USER_ID
+		FROM USER
+		WHERE USER_NM = #{userNm}
+	</select>
+	
 
 </mapper>

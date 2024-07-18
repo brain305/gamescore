@@ -42,5 +42,10 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	@Override
+	public long getUserId(String userNm) {
+		return userDAO.getUserId(userNm);
+	}
+
 
 }

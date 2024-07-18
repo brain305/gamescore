@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout.html}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<!-- ================ start banner area ================= -->
+		<section class="blog-banner-area" id="category">
+			<div class="container h-100">
+				<div class="blog-banner">
+					<div class="text-center">
+						<h1>Admin Update Game Page</h1>
+						<nav aria-label="breadcrumb" class="banner-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">Admin</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Admin
+									Update Game Page</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- ================ end banner area ================= -->
+
+
+		<!--================AddGame Area =================-->
+		<section class="checkout_area section-margin--small">
+			<div class="container">
+				<div class="billing_details">
+					<div class="row">
+						<div class="col-lg-8">
+							<h3>Insert Game Details</h3>
+							<form class="row contact_form" th:action="@{/admin/updateGame}" th:object="${gameDTO}"
+								method="post" enctype="multipart/form-data"
+								novalidate="novalidate">
+								
+								<input type="hidden" th:field="*{gameId}">
+								<div class="col-md-12 form-group">
+									<input type="text" required class="form-control" id="title"
+										name="title" th:field="*{title}">
+								</div>
+								<div class="col-md-12 form-group">
+									<input type="text" required class="form-control" id="releaseDt"
+										name="releaseDt" th:field="*{releaseDt}">
+								</div>
+								<div class="col-md-6 form-group p_star">
+									<input type="text" required class="form-control" id="developer"
+										name="developer" th:field="*{developer}">
+								</div>
+								<div class="col-md-6 form-group p_star">
+									<input type="text" required class="form-control" id="publisher"
+										name="publisher" th:field="*{publisher}">
+								</div>
+								<div class="col-md-12 form-group p_star">
+									<input type="text" required class="form-control"
+										id="steamdeckCompatibility" name="steamdeckCompatibility"
+										th:field="*{steamdeckCompatibility}">
+								</div>
+								<div class="col-md-12 form-group p_star">
+									<input type="text" required class="form-control" id="genre"
+										name="genre" th:field="*{genre}">
+								</div>
+								<div class="col-md-12 form-group p_star">
+									<input type="text" required class="form-control" id="player"
+										name="player" th:field="*{player}">
+								</div>
+								<div class="col-md-12 form-group p_star">
+									<input type="text" required class="form-control" id="modes"
+										name="modes" th:field="*{modes}">
+								</div>
+								<div class="col-md-12 form-group">
+									<input type="text" class="form-control" id="description"
+										name="description" th:field="*{description}">
+								</div>
+								<div class="col-md-12 form-group">
+									<input type="text" required class="form-control"
+										id="purchaseLk" name="purchaseLk" th:field="*{purchaseLk}">
+								</div>
+								<div class="text-center">
+									<input type="file" required class="button button-paypal"
+										id="upFile" name="upFile" th:field="*{gameImgNm}">
+								</div>
+								<hr>
+								<div class="text-center">
+									<input type="submit" class="button button-paypal"
+										value="Insert Game">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--================End AddGame Area =================-->
+
+	</div>
+</body>
+</html>
