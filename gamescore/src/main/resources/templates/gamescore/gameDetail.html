@@ -212,8 +212,8 @@
 									<div class="col-6">
 										<div class="box_total">
 											<h5>Game Score</h5>
-											<h4>0 ~ 100</h4>
-											<h6>(리뷰 개수)</h6>
+											<h4 th:text="${rating}">0 ~ 100</h4>
+											<h6 th:text="|리뷰 개수 : ${reviewCnt}개|">(리뷰 개수)</h6>
 										</div>
 									</div>
 								</div>

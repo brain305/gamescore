@@ -34,5 +34,16 @@
 		)
 	</insert>
 	
+	<select id="getGameRating" parameterType="long" resultType="int">
+		SELECT AVG(RATING)
+		FROM GS_REVIEW
+		WHERE GAME_ID = #{gameId}
+	</select>
+	
+	<select id="getReviewCnt" parameterType="long" resultType="int">
+		SELECT COUNT(*)
+		FROM GS_REVIEW
+		WHERE GAME_ID = #{gameId}
+	</select>
 	
 </mapper>

@@ -26,7 +26,12 @@ public class GameController {
 	public String gameDetail(Model model, @RequestParam("gameId") long gameId) {
 		
 		GameDTO gameDTO = gameService.getGameDetail(gameId);
+		int gameReviewCnt= gameService.getReviewCnt(gameId);
+		int rating = gameService.getGameRating(gameId);
+		
 		model.addAttribute("gameDTO", gameDTO);
+		model.addAttribute("rating", rating);
+		model.addAttribute("reviewCnt", gameReviewCnt);
 		
 		return "gamescore/gameDetail";
 	}
@@ -35,7 +40,7 @@ public class GameController {
 	public String gameList(Model model) {
 		
 		List<GameDTO> gameList = gameService.getGameList();
-		System.out.println(gameList);
+		
 		model.addAttribute("gameList", gameList);
 		
 		return "gamescore/gameList";
@@ -60,8 +65,6 @@ public class GameController {
 		
 		return jsScript;
 	}
-	
-	
 	
 	
 	

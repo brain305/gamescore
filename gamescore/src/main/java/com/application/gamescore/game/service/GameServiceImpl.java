@@ -38,4 +38,14 @@ public class GameServiceImpl implements GameService {
 		
 	}
 
+	@Override
+	public int getGameRating(long gameId) {
+		return gameDAO.getGameRating(gameId);
+	}
+
+	@Override
+	public int getReviewCnt(long gameId) {
+		return gameDAO.getReviewCnt(gameId);
+	}
+
 }

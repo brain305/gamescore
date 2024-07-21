@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.application.gamescore.community.dao.CommunityDAO">
+	
+	<select id="getPostList" resultType="PostDTO">
+		SELECT *
+		FROM POST
+	</select>
+	
+	<insert id="insertPost" parameterType="PostDTO">
+		INSERT INTO 
+		POST (
+			POST_ID,
+			USER_ID,
+			USER_NM,
+			TITLE,
+			CONTENT,
+			READ_CNT,
+			CREATED_AT,
+			UPDATED_AT
+		)
+		VALUE (
+			#{postId},
+			#{userId},
+			#{userNm},
+			#{title},
+			#{content},
+			#{readCnt},
+			NOW(),
+			NOW()		
+		)
+	</insert>
+	
+	<select id="getPostDetail" parameterType="long" resultType="PostDTO">
+		SELECT *
+		FROM POST
+		WHERE POST_ID = #{postId}
+	</select>
+	
+	<select id="getUserDTO" parameterType="long" resultType="UserDTO">
+		SELECT *
+		FROM USER
+		WHERE USER_ID = #{userId}
+	</select>
+	
+</mapper>

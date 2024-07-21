@@ -21,6 +21,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/ckeditor/ckeditor.js}"></script>
 <!-- 다음 우편번호 검색 api -->
 <script
 	th:src="@{http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js}"></script>
@@ -54,6 +55,16 @@
 	}
 </script>
 
+<style>
+	@media (max-width: 768px) {
+    .navbar-collapse {
+        max-height: none;
+        overflow: visible;
+    }
+}
+</style>
+
+</head>
 <body>
 	<!--================ Start Header Menu Area =================-->
 	<header class="header_area">
@@ -82,7 +93,7 @@
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/gameList}">Game List</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/confirmation}">Confirmation</a></li>
+										th:href="@{/community/insertPost}">Insert Post</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/cart}">Shopping Cart</a></li>
 								</ul></li>
@@ -91,9 +102,9 @@
 								role="button" aria-haspopup="true" aria-expanded="false">Community</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/community}">Community</a></li>
+										th:href="@{/community/main}">Community</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/single-blog}">Community Details</a></li>
+										th:href="@{/community/post}">Community Post</a></li>
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"

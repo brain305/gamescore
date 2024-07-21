@@ -47,5 +47,6 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserId(userNm);
 	}
 
+	
 
 }

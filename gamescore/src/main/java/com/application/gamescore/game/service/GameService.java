@@ -9,4 +9,6 @@ public interface GameService {
 	public List<GameDTO> getGameList();
 	public GameDTO getGameDetail(long gameId);
 	public void createGameRating(RateDTO rateDTO);
+	public int getGameRating(long gameId);
+	public int getReviewCnt(long gameId);
 }
