@@ -46,11 +46,6 @@ public class GameController {
 		return "gamescore/gameList";
 	}
 	
-	@PostMapping("/gameList")
-	@ResponseBody
-	public String gameList() {
-		return "";
-	}
 	
 	@PostMapping("/gameDetail")
 	@ResponseBody

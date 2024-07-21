@@ -37,8 +37,8 @@ public class CommunityServiceImpl implements CommunityService {
 			upFile.transferTo(new File(fileRepositoryPath + uploadFileName));
 			postDTO.setPostImgNm(uploadFileName);
 		}
-		
-		communityDAO.insertPost(postDTO, upFile);
+		communityDAO.insertPost(postDTO);
+	
 	}
 
 	@Override

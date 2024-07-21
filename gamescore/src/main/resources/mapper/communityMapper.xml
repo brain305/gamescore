@@ -18,7 +18,8 @@
 			CONTENT,
 			READ_CNT,
 			CREATED_AT,
-			UPDATED_AT
+			UPDATED_AT,
+			POST_IMG_NM
 		)
 		VALUE (
 			#{postId},
@@ -28,7 +29,8 @@
 			#{content},
 			#{readCnt},
 			NOW(),
-			NOW()		
+			NOW(),
+			#{postImgNm}
 		)
 	</insert>
 	
