@@ -14,4 +14,6 @@ public interface CommunityDAO {
 	public void insertPost(PostDTO postDTO);
 	public PostDTO getPostDetail(long postId);
 	public UserDTO getUserDTO(long userId);
+	public UserDTO getUserDetail(long postId);
+	public String getPostImgNm(long postId);
 }

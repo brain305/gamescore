@@ -3,7 +3,32 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{common/layout.html}">
 <head>
-<meta charset="UTF-8">
+
+<script>
+
+	function sortingSelect() {
+		var selectedValue = document.getElementById("pageSort").value;
+		var url;
+
+		switch (selectedValue) {
+		case '1':
+			url = '/gameList?sort=default';
+			break;
+		case '2':
+			url = '/gameList?sort=popular';
+			break;
+		case '3':
+			url = '/gameList?sort=latest';
+			break;
+		default:
+			url = '/gameList?sort=default';
+		}
+
+		location.href = url;
+	}
+		
+</script>
+
 </head>
 <body>
 	<div layout:fragment="content">
@@ -126,23 +151,18 @@
 					</div>
 					<div class="col-xl-9 col-lg-8 col-md-7">
 						<!-- Start Filter Bar -->
-						<div class="filter-bar d-flex flex-wrap align-items-center">
+						<div
+							class="filter-bar d-flex flex-wrap align-items-center justify-content-between">
 							<div class="sorting">
-								<select>
-									<option value="1">Default sorting</option>
-									<option value="1">Default sorting</option>
-									<option value="1">Default sorting</option>
-								</select>
-							</div>
-							<div class="sorting mr-auto">
-								<select>
-									<option value="1">Show 12</option>
-									<option value="1">Show 12</option>
-									<option value="1">Show 12</option>
+								<select  id="pageSort" onchange="sortingSelect();">
+									<option value="1">기본 정렬</option>
+									<option value="2">인기순</option>
+									<option value="3">최신순</option>
 								</select>
 							</div>
 							<div>
-								<div class="input-group filter-bar-search">
+								<div class="input-group filter-bar-search"
+									style="margin-left: auto;">
 									<input type="text" placeholder="Search">
 									<div class="input-group-append">
 										<button type="button">
@@ -164,21 +184,16 @@
 												alt="">
 											<ul class="card-product__imgOverlay">
 												<li><button>
-														<i class="ti-search"></i>
-													</button></li>
-												<li><button>
-														<i class="ti-shopping-cart"></i>
-													</button></li>
-												<li><button>
-														<i class="ti-heart"></i>
+														<a class="ti-search" th:href="@{/gameDetail(gameId=${game.gameId})}"></a>
 													</button></li>
 											</ul>
 										</div>
 										<div class="card-body">
 											<h4 class="card-product__title">
-												<a th:href="@{/gameDetail(gameId=${game.gameId})}" th:text="${game.title}"></a>
+												<a th:href="@{/gameDetail(gameId=${game.gameId})}"
+													th:text="${game.title}"></a>
 											</h4>
-											<p class="card-product__price" th:text="${game.price}"></p>
+											<p class="card-product__price" th:text="|₩${#numbers.formatInteger(game.price, 3, 'COMMA')}|"></p>
 										</div>
 									</div>
 								</div>

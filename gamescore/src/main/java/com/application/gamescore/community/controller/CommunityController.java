@@ -29,22 +29,23 @@ public class CommunityController {
 	public String community(Model model) {
 		
 		List<PostDTO> postList = communityService.getPostList();
-		System.out.println(postList);
 		model.addAttribute("postList", postList);
 		
 		return "gamescore/community";
 	}
 	
 	@GetMapping("/post")
-	public String postDetail(Model model, @RequestParam("postId") long postId, @RequestParam("userId") long userId) {
+	public String postDetail(Model model, @RequestParam("postId") long postId) {
 		
-		model.addAttribute("userDTO", communityService.getUserDTO(userId));
 		model.addAttribute("postDTO", communityService.getPostDetail(postId));
+		model.addAttribute("userDTO", communityService.getUserDetail(postId));
+		
 		return "gamescore/post";
 	}
 	
 	@GetMapping("/insertPost")
 	public String insertPost() {
+		
 		return "gamescore/insertPost";
 	}
 	

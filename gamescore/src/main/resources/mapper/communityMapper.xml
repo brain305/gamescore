@@ -46,4 +46,21 @@
 		WHERE USER_ID = #{userId}
 	</select>
 	
+	<select id="getUserDetail" parameterType="long" resultType="UserDTO">
+		SELECT U.*
+		FROM POST P
+		JOIN USER U
+		ON P.USER_ID = U.USER_ID
+		WHERE POST_ID = #{postId}
+		
+	</select>
+	
+	<select id="getPostImgNm" parameterType="long" resultType="String">
+		SELECT POST_IMG_NM
+		FROM POST
+		WHERE POST_ID = #{postId}
+	</select>
+	
+	
+	
 </mapper>

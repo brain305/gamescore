@@ -51,4 +51,9 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDAO.getUserDTO(userId);
 	}
 
+	@Override
+	public UserDTO getUserDetail(long postId) {
+		return communityDAO.getUserDetail(postId);
+	}
+
 }

@@ -2,48 +2,94 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.application.gamescore.game.dao.GameDAO">
-	
+
 	<select id="getGameList" resultType="GameDTO">
 		SELECT *
 		FROM GAME
 	</select>
 	
-	<select id="getGameDetail" parameterType="long" resultType="GameDTO">
+	<select id="getGameListDesc">
+		SELECT *
+		FROM GAME
+		ORDER BY GAME_ID DESC
+	</select>
+
+
+	<select id="getGameListOrderByPop" resultType="GameDTO">
+		SELECT
+		G.GAME_ID,
+		G.TITLE,
+		G.PRICE,
+		G.DESCRIPTION,
+		G.RELEASE_DT,
+		G.DEVELOPER,
+		G.PUBLISHER,
+		G.PURCHASE_LK,
+		G.STEAMDECK_COMPATIBILITY,
+		G.GENRE,
+		G.MODES,
+		G.PLAYER,
+		G.GAME_IMG_NAME,
+		COUNT(R.REVIEW_ID) AS REVIEW_COUNT
+		FROM
+		GAME G
+		LEFT JOIN
+		GS_REVIEW R ON G.GAME_ID = R.GAME_ID
+		GROUP BY
+		G.GAME_ID,
+		G.TITLE,
+		G.PRICE,
+		G.DESCRIPTION,
+		G.RELEASE_DT,
+		G.DEVELOPER,
+		G.PUBLISHER,
+		G.PURCHASE_LK,
+		G.STEAMDECK_COMPATIBILITY,
+		G.GENRE,
+		G.MODES,
+		G.PLAYER,
+		G.GAME_IMG_NAME
+		ORDER BY
+		REVIEW_COUNT DESC;
+	</select>
+
+	<select id="getGameDetail" parameterType="long"
+		resultType="GameDTO">
 		SELECT *
 		FROM GAME
 		WHERE GAME_ID = #{gameId}
 	</select>
-	
+
 	<insert id="createGameRating" parameterType="RateDTO">
 		INSERT INTO
 		GS_REVIEW(
-			REVIEW_ID,
-			GAME_ID,
-			USER_ID,
-			RATING,
-			REVIEW_TEXT,
-			REVIEW_DT
+		REVIEW_ID,
+		GAME_ID,
+		USER_ID,
+		RATING,
+		REVIEW_TEXT,
+		REVIEW_DT
 		)
 		VALUE(
-			#{reviewId},
-			#{gameId},
-			#{userId},
-			#{rating},
-			#{reviewText},
-			NOW()
+		#{reviewId},
+		#{gameId},
+		#{userId},
+		#{rating},
+		#{reviewText},
+		NOW()
 		)
 	</insert>
-	
+
 	<select id="getGameRating" parameterType="long" resultType="int">
-		SELECT AVG(RATING)
+		SELECT COALESCE(AVG(RATING), 0)
 		FROM GS_REVIEW
 		WHERE GAME_ID = #{gameId}
 	</select>
-	
+
 	<select id="getReviewCnt" parameterType="long" resultType="int">
 		SELECT COUNT(*)
 		FROM GS_REVIEW
 		WHERE GAME_ID = #{gameId}
 	</select>
-	
+
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.application.gamescore.admin.dao.AdminDAO;
+import com.application.gamescore.admin.dto.AdminDTO;
 import com.application.gamescore.admin.dto.GameDTO;
 
 
@@ -38,6 +39,16 @@ public class AdminServiceImpl implements AdminService {
 	public GameDTO getGameDetail(long gameId) {
 		adminDAO.getGameDetail(gameId);
 		return null;
+	}
+
+	@Override
+	public boolean adminLogin(AdminDTO adminDTO) {
+		
+		if(adminDAO.adminLogin(adminDTO) != null) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	

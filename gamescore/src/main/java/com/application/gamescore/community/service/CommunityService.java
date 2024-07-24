@@ -13,4 +13,5 @@ public interface CommunityService {
 	public void insertPost(PostDTO postDTO, MultipartFile upFile) throws IllegalStateException, IOException;
 	public PostDTO getPostDetail(long postId);
 	public UserDTO getUserDTO(long userId);
+	public UserDTO getUserDetail(long postId);
 }

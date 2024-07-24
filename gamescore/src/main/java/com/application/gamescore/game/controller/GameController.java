@@ -15,55 +15,63 @@ import com.application.gamescore.admin.dto.GameDTO;
 import com.application.gamescore.game.dto.RateDTO;
 import com.application.gamescore.game.service.GameService;
 
-
 @Controller
 public class GameController {
-	
+
 	@Autowired
 	private GameService gameService;
-	
+
 	@GetMapping("/gameDetail")
 	public String gameDetail(Model model, @RequestParam("gameId") long gameId) {
-		
+
 		GameDTO gameDTO = gameService.getGameDetail(gameId);
-		int gameReviewCnt= gameService.getReviewCnt(gameId);
+		int gameReviewCnt = gameService.getReviewCnt(gameId);
 		int rating = gameService.getGameRating(gameId);
-		
+
 		model.addAttribute("gameDTO", gameDTO);
 		model.addAttribute("rating", rating);
 		model.addAttribute("reviewCnt", gameReviewCnt);
-		
+
 		return "gamescore/gameDetail";
 	}
-	
+
 	@GetMapping("/gameList")
-	public String gameList(Model model) {
-		
-		List<GameDTO> gameList = gameService.getGameList();
-		
-		model.addAttribute("gameList", gameList);
-		
+	public String gameList(Model model, @RequestParam(name="sort" ,defaultValue = "default") String sort) {
+
+		if (sort.equals("default")) {
+			List<GameDTO> gameList = gameService.getGameList();
+
+			model.addAttribute("gameList", gameList);
+
+		}
+
+		else if (sort.equals("popular")) {
+			List<GameDTO> gameList = gameService.getGameListOrderByPop();
+
+			model.addAttribute("gameList", gameList);
+		}
+
+		else if (sort.equals("latest")) {
+			List<GameDTO> gameList = gameService.getGameListDesc();
+
+			model.addAttribute("gameList", gameList);
+		}
+
 		return "gamescore/gameList";
 	}
-	
-	
+
 	@PostMapping("/gameDetail")
 	@ResponseBody
 	public String gameDetail(@ModelAttribute RateDTO rateDTO) {
-		
+
 		gameService.createGameRating(rateDTO);
 		String jsScript = """
 				<script>
 					 alert('평점이 등록되었습니다.');
 					location.href='/gameList';
-				</script>""";	
-		
+				</script>""";
+
 		return jsScript;
 	}
-	
-	
-	
-	
-	
-	
+
 }

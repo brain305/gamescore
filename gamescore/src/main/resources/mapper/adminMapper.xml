@@ -44,4 +44,11 @@
 		WHERE GAME_ID = #{gameId}
 	</select>
 	
+	<select id="adminLogin" parameterType="AdminDTO" resultType="AdminDTO">
+		SELECT *
+		FROM ADMIN
+		WHERE ADMIN_ID = #{adminId} AND PASSWD = #{passwd}
+	</select>
+	
+	
 </mapper>

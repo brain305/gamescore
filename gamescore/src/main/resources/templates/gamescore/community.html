@@ -106,13 +106,10 @@
 							<article class="row blog_item" th:each="post : ${postList}">
 								<div class="col-md-3">
 									<div class="blog_info text-right">
-										<div class="post_tag">
-											<a href="#">Food,</a> <a class="active" href="#">Technology,</a>
-											<a href="#">Politics,</a> <a href="#">Lifestyle</a>
-										</div>
 										<ul class="blog_meta list">
-											<li><a href="#" th:text="|작성자 : ${post.userNm}|">작성자<i class="lnr lnr-user"></i>
-											</a></li>
+											<li th:text="|작성자 : ${post.userNm}|">작성자<i
+												class="lnr lnr-user"></i>
+											</li>
 											<li th:text="|작성일 : ${post.createdAt}|">작성일</li>
 											<li th:text="|조회수 : ${post.readCnt}|">조회수</li>
 										</ul>
@@ -120,13 +117,13 @@
 								</div>
 								<div class="col-md-9">
 									<div class="blog_post">
-										<img th:src="@{/img/blog/main-blog/m-blog-1.jpg}" alt="">
+										<img th:src="@{/file/postThumbnails(postId=${post.postId})}" onerror="this.onerror=null; this.src='/img/blog/main-blog/m-blog-1.jpg'" style="height: 227.02px; width: 450px;" alt="">
 										<div class="blog_details">
 											<a th:href="@{/community/post(postId=${post.postId})}">
 												<h2 th:text="${post.title}">title</h2>
-											</a> <br>
-											<a class="button button-blog"
-												th:href="@{/community/post(postId=${post.postId}, userId=${post.userId})}">View	More</a>
+											</a> <br> <a class="button button-blog"
+												th:href="@{/community/post(postId=${post.postId})}">View
+												More</a>
 										</div>
 									</div>
 								</div>
@@ -134,7 +131,7 @@
 
 
 
-							
+
 							<nav class="blog-pagination justify-content-center d-flex">
 								<ul class="pagination">
 									<li class="page-item"><a href="#" class="page-link"
@@ -176,7 +173,7 @@
 								<!-- /input-group -->
 								<div class="br"></div>
 							</aside>
-							
+
 							<aside class="single_sidebar_widget popular_post_widget">
 								<h3 class="widget_title">Popular Posts</h3>
 								<div class="media post_item">

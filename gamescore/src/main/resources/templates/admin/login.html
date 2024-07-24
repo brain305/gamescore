@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout.html}">
+
+<head>
+	<meta charset="UTF-8">
+	
+</head>
+
+<body>
+<div layout:fragment="content">
+	<!-- ================ start banner area ================= -->
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Admin Login</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Admin Login</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ================ end banner area ================= -->
+
+	<!--================Login Box Area =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img th:src="@{/img/home/eldenRingDlc.jpeg}" height="100%">
+						<div class="hover">
+							<h4>Admin Login</h4>
+							<p>There are advances being made in science and technology everyday, and a good example of
+								this is the</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>Log in to enter</h3>
+						<form class="row login_form" th:action="@{/admin/login}" method="post" id="contactForm">
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="adminId" name="adminId" placeholder="AdminId"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'AdminId'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+
+</div>
+</body>
+
+</html>

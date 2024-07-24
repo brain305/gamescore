@@ -56,11 +56,11 @@
 </script>
 
 <style>
-	@media (max-width: 768px) {
-    .navbar-collapse {
-        max-height: none;
-        overflow: visible;
-    }
+@media ( max-width : 768px) {
+	.navbar-collapse {
+		max-height: none;
+		overflow: visible;
+	}
 }
 </style>
 
@@ -92,10 +92,7 @@
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/gameList}">Game List</a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/community/insertPost}">Insert Post</a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/cart}">Shopping Cart</a></li>
+
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -104,23 +101,46 @@
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/community/main}">Community</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/community/post}">Community Post</a></li>
+										th:href="@{/community/insertPost}">Insert Post</a></li>
 								</ul></li>
-							<li class="nav-item submenu dropdown"><a href="#"
-								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/user/login}">Login</a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/user/register}">Register</a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/tracking-order}">Tracking</a></li>
-								</ul></li>
+
+							<th:block th:if="session.role == 'admin'">
+								<li class="nav-item submenu dropdown"><a href="#"
+									class="nav-link dropdown-toggle" data-toggle="dropdown"
+									role="button" aria-haspopup="true" aria-expanded="false">Admin
+										Pages</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link"
+											th:href="@{/admin/insertGame}">Insert Game</a></li>
+										<li class="nav-item"><a class="nav-link"
+											th:href="@{/tracking-order}">Tracking</a></li>
+									</ul></li>
+							</th:block>
+
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{/contact}">Contact</a></li>
 						</ul>
-						<th:block th:if="${session.userNm == null }">
+						<th:block
+							th:if="${session.userNm == null && session.role != 'admin'}">
+							<ul class="nav-shop">
+								<!-- <li class="nav-item"><button>
+										<i class="ti-search"></i>
+									</button></li> -->
+								<li class="nav-item"><a class="button button-header"
+									th:href="@{/user/login}">Login / Register</a></li>
+							</ul>
+						</th:block>
+						<th:block th:unless="${session.userNm == null}">
+							<ul class="nav-shop">
+								<!-- <li class="nav-item"><button>
+										<i class="ti-search"></i>
+									</button></li> -->
+								<li class="nav-item"><a class="button button-header"
+									th:href="@{/user/logout}">logout</a></li>
+							</ul>
+						</th:block>
+
+						<th:block th:if="${session.role == 'admin'}">
 							<ul class="nav-shop">
 								<li class="nav-item"><button>
 										<i class="ti-search"></i>
@@ -128,22 +148,8 @@
 								<li class="nav-item"><button>
 										<i class="ti-shopping-cart"></i><span class="nav-shop__circle"></span>
 									</button></li>
-
-
 								<li class="nav-item"><a class="button button-header"
-									th:href="@{/user/login}">Login / Register</a></li>
-							</ul>
-						</th:block>
-						<th:block th:unless="${session.userNm == null }">
-							<ul class="nav-shop">
-								<li class="nav-item"><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li class="nav-item"><button>
-										<i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span>
-									</button></li>
-								<li class="nav-item"><a class="button button-header"
-									th:href="@{/user/logout}">logout</a></li>
+									th:href="@{/admin/logout}">Admin Logout</a></li>
 							</ul>
 						</th:block>
 					</div>

@@ -48,4 +48,14 @@ public class GameServiceImpl implements GameService {
 		return gameDAO.getReviewCnt(gameId);
 	}
 
+	@Override
+	public List<GameDTO> getGameListOrderByPop() {
+		return gameDAO.getGameListOrderByPop();
+	}
+
+	@Override
+	public List<GameDTO> getGameListDesc() {
+		return gameDAO.getGameListDesc();
+	}
+
 }
