@@ -104,7 +104,7 @@
 										th:href="@{/community/insertPost}">Insert Post</a></li>
 								</ul></li>
 
-							<th:block th:if="session.role == 'admin'">
+							<th:block th:if="${session.role == 'admin'}">
 								<li class="nav-item submenu dropdown"><a href="#"
 									class="nav-link dropdown-toggle" data-toggle="dropdown"
 									role="button" aria-haspopup="true" aria-expanded="false">Admin
@@ -112,8 +112,6 @@
 									<ul class="dropdown-menu">
 										<li class="nav-item"><a class="nav-link"
 											th:href="@{/admin/insertGame}">Insert Game</a></li>
-										<li class="nav-item"><a class="nav-link"
-											th:href="@{/tracking-order}">Tracking</a></li>
 									</ul></li>
 							</th:block>
 
