@@ -73,5 +73,15 @@ public class GameController {
 
 		return jsScript;
 	}
-
+	
+	
+	@GetMapping("/search")
+	public String search(@RequestParam("searchKeyword") String searchKeyword, Model model) {
+		
+		model.addAttribute("gameList", gameService.searchGame(searchKeyword));
+		
+		return "gamescore/gameList";
+	}
+	
+	
 }

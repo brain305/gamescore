@@ -91,5 +91,12 @@
 		FROM GS_REVIEW
 		WHERE GAME_ID = #{gameId}
 	</select>
+	
+	<select id="searchGame" parameterType="String" resultType="GameDTO">
+		SELECT *
+		FROM GAME
+		WHERE TITLE LIKE CONCAT('%', #{searchKeyword},'%')
+	</select>
+	
 
 </mapper>

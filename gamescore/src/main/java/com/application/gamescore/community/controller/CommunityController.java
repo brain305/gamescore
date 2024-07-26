@@ -23,49 +23,78 @@ public class CommunityController {
 
 	@Autowired
 	private CommunityService communityService;
-	
-	
+
 	@GetMapping("/main")
 	public String community(Model model) {
-		
+
 		List<PostDTO> postList = communityService.getPostList();
 		model.addAttribute("postList", postList);
-		
+
 		return "gamescore/community";
 	}
-	
+
 	@GetMapping("/post")
 	public String postDetail(Model model, @RequestParam("postId") long postId) {
-		
+
 		model.addAttribute("postDTO", communityService.getPostDetail(postId));
 		model.addAttribute("userDTO", communityService.getUserDetail(postId));
+		model.addAttribute("previousPostId", communityService.getPreviousPostId(postId));
+		model.addAttribute("nextPostId", communityService.getNextPostId(postId));
 		
 		return "gamescore/post";
 	}
-	
+
 	@GetMapping("/insertPost")
 	public String insertPost() {
-		
+
 		return "gamescore/insertPost";
 	}
-	
+
 	@PostMapping("/insertPost")
 	@ResponseBody
-	public String insertPost(@ModelAttribute PostDTO postDTO, @RequestParam("upFile") MultipartFile upFile) throws IllegalStateException, IOException {
-		
+	public String insertPost(@ModelAttribute PostDTO postDTO, @RequestParam("upFile") MultipartFile upFile)
+			throws IllegalStateException, IOException {
+
 		communityService.insertPost(postDTO, upFile);
-		
 		String jsScript = """
 				<script>
 					 alert('게시글이 등록되었습니다.');
 					location.href='/community/main';
-				</script>""";	
-		
+				</script>""";
+
 		return jsScript;
 	}
+
+	@GetMapping("/deletePost")
+	@ResponseBody
+	public String deletePost(@RequestParam("postId") long postId) {
+
+		String jsScript = """
+				<script>
+					 alert('게시글이 삭제되었습니다.');
+					location.href='/community/main';
+				</script>
+				""";
+
+		communityService.deletePost(postId);
+
+		return jsScript;
+	}
+
+	@GetMapping("/updatePost")
+	public String updatePost(@RequestParam("postId") long postId, Model model) {
+		
+		model.addAttribute("postDTO", communityService.getPostDTO(postId));
+		
+		return "gamescore/updatePost";
+	}
 	
-	
-	
+	@GetMapping("/search")
+	public String search(@RequestParam("searchKeyword") String searchKeyword, Model model) {
+		
+		model.addAttribute("postList", communityService.searchPost(searchKeyword));
+		return "gamescore/community";
+	}
 	
 	
 }

@@ -61,6 +61,40 @@
 		WHERE POST_ID = #{postId}
 	</select>
 	
+	<delete id="deletePost" parameterType="long">
+		DELETE FROM POST
+		WHERE POST_ID = #{postId}
+	</delete>
+	
+	<select id="getPostDTO" parameterType="long" resultType="PostDTO">
+		SELECT *
+		FROM POST
+		WHERE POST_ID = #{postId}
+	</select>
+	
+	<select id="getPreviousPostId" parameterType="long" resultType="long">
+		<![CDATA[
+			SELECT COALESCE(MAX(POST_ID), -1)
+			FROM POST
+			WHERE POST_ID < #{postId}
+		]]>
+	</select>
+	
+	<select id="getNextPostId" parameterType="long" resultType="long">
+		<![CDATA[
+			SELECT COALESCE(MIN(POST_ID), -1)
+			FROM POST
+			WHERE POST_ID > #{postId}
+		]]>
+	</select>
+	
+	<select id="searchPost" parameterType="String" resultType="PostDTO">
+		SELECT *
+		FROM POST
+		WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%') OR CONTENT LIKE CONCAT('%', #{searchKeyword},'%')
+		ORDER BY TITLE DESC
+	</select>
+	
 	
 	
 </mapper>

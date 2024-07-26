@@ -13,6 +13,7 @@ public interface GameDAO {
 	public List<GameDTO> getGameList();
 	public List<GameDTO> getGameListOrderByPop();
 	public List<GameDTO> getGameListDesc();
+	public List<GameDTO> searchGame(String searchKeyword);
 	public GameDTO getGameDetail(long gameId);
 	public void createGameRating(RateDTO rateDTO);
 	public int getGameRating(long gameId);

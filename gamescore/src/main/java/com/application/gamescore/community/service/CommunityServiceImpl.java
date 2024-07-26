@@ -56,4 +56,29 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDAO.getUserDetail(postId);
 	}
 
+	@Override
+	public void deletePost(long postId) {
+		communityDAO.deletePost(postId);
+	}
+
+	@Override
+	public PostDTO getPostDTO(long postId) {
+		return communityDAO.getPostDTO(postId);
+	}
+
+	@Override
+	public long getPreviousPostId(long postId) {
+		return communityDAO.getPreviousPostId(postId);
+	}
+
+	@Override
+	public long getNextPostId(long postId) {
+		return communityDAO.getNextPostId(postId);
+	}
+
+	@Override
+	public List<PostDTO> searchPost(String searchKeyword) {
+		return communityDAO.searchPost(searchKeyword);
+	}
+
 }

@@ -24,6 +24,7 @@ public class FileController {
 	@Value("${file.repo.path}")
 	private String fileRepositoryPath;
 	
+	
 	@GetMapping("/thumbnails")
 	@ResponseBody
 	public Resource thumbnails(@RequestParam("gameImgName") String gameImgName) throws MalformedURLException {
@@ -40,7 +41,6 @@ public class FileController {
 	@GetMapping("/postThumbnails")
 	@ResponseBody
 	public Resource postThumbnails(@RequestParam("postId") long postId) throws MalformedURLException {
-		
 		return new UrlResource("file:" + fileRepositoryPath + communityDAO.getPostImgNm(postId));
 	}
 	

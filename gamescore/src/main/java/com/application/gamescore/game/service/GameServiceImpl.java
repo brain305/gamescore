@@ -58,4 +58,9 @@ public class GameServiceImpl implements GameService {
 		return gameDAO.getGameListDesc();
 	}
 
+	@Override
+	public List<GameDTO> searchGame(String searchKeyword) {
+		return gameDAO.searchGame(searchKeyword);
+	}
+
 }

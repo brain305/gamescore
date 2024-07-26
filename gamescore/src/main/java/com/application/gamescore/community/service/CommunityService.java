@@ -14,4 +14,9 @@ public interface CommunityService {
 	public PostDTO getPostDetail(long postId);
 	public UserDTO getUserDTO(long userId);
 	public UserDTO getUserDetail(long postId);
+	public void deletePost(long postId);
+	public PostDTO getPostDTO(long postId);
+	public long getPreviousPostId(long postId);
+	public long getNextPostId(long postId);
+	public List<PostDTO> searchPost(String searchKeyword);
 }
