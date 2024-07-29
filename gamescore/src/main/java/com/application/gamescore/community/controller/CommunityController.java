@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.application.gamescore.community.dto.CommentDTO;
 import com.application.gamescore.community.dto.PostDTO;
 import com.application.gamescore.community.service.CommunityService;
 
@@ -40,6 +41,7 @@ public class CommunityController {
 		model.addAttribute("userDTO", communityService.getUserDetail(postId));
 		model.addAttribute("previousPostId", communityService.getPreviousPostId(postId));
 		model.addAttribute("nextPostId", communityService.getNextPostId(postId));
+		model.addAttribute("comment", communityService.getCommentList(postId));
 		
 		return "gamescore/post";
 	}
@@ -95,6 +97,25 @@ public class CommunityController {
 		model.addAttribute("postList", communityService.searchPost(searchKeyword));
 		return "gamescore/community";
 	}
+	
+	@PostMapping("/insertComment")
+	@ResponseBody
+	public String insertComment(@ModelAttribute CommentDTO commentDTO) {
+		
+		communityService.createComment(commentDTO);
+		long postId = commentDTO.getPostId();
+		String jsScript = String.format( """
+				<script>
+					 alert('댓글이 등록되었습니다.');
+					location.href='/community/post?postId=%d';
+				</script>
+				""", postId);
+		
+		return jsScript;
+	}
+	
+	
+	
 	
 	
 }

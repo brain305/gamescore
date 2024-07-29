@@ -98,5 +98,18 @@
 		WHERE TITLE LIKE CONCAT('%', #{searchKeyword},'%')
 	</select>
 	
+	<select id="getGameReview">
+		SELECT R.*, U.USER_NM
+		FROM GS_REVIEW R
+		JOIN USER U
+		ON R.USER_ID = U.USER_ID
+		WHERE GAME_ID = #{gameId}
+	</select>
+	
+	
+	
+	
+	
+	
 
 </mapper>

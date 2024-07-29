@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.application.gamescore.admin.dto.GameDTO;
 import com.application.gamescore.game.dto.RateDTO;
+import com.application.gamescore.game.dto.ReviewDTO;
 import com.application.gamescore.game.service.GameService;
 
 @Controller
@@ -27,11 +28,14 @@ public class GameController {
 		GameDTO gameDTO = gameService.getGameDetail(gameId);
 		int gameReviewCnt = gameService.getReviewCnt(gameId);
 		int rating = gameService.getGameRating(gameId);
-
+		List<ReviewDTO> reviewList = gameService.getGameReview(gameId);
+		
+		
 		model.addAttribute("gameDTO", gameDTO);
 		model.addAttribute("rating", rating);
 		model.addAttribute("reviewCnt", gameReviewCnt);
-
+		model.addAttribute("reviewList", reviewList);
+		
 		return "gamescore/gameDetail";
 	}
 

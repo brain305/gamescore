@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.application.gamescore.admin.dto.GameDTO;
 import com.application.gamescore.game.dao.GameDAO;
 import com.application.gamescore.game.dto.RateDTO;
+import com.application.gamescore.game.dto.ReviewDTO;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -61,6 +62,11 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<GameDTO> searchGame(String searchKeyword) {
 		return gameDAO.searchGame(searchKeyword);
+	}
+
+	@Override
+	public List<ReviewDTO> getGameReview(long gameId) {
+		return gameDAO.getGameReview(gameId);
 	}
 
 }

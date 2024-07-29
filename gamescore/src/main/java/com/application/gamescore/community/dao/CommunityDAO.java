@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.application.gamescore.community.dto.CommentDTO;
 import com.application.gamescore.community.dto.PostDTO;
 import com.application.gamescore.user.dto.UserDTO;
 
@@ -21,4 +22,6 @@ public interface CommunityDAO {
 	public long getPreviousPostId(long postId);
 	public long getNextPostId(long postId);
 	public List<PostDTO> searchPost(String searchKeyword);
+	public void createComment(CommentDTO commentDTO);
+	public List<CommentDTO> getCommentList(long postId);
 }

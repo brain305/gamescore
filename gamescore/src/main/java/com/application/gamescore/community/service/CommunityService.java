@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.application.gamescore.community.dto.CommentDTO;
 import com.application.gamescore.community.dto.PostDTO;
 import com.application.gamescore.user.dto.UserDTO;
 
@@ -19,4 +20,6 @@ public interface CommunityService {
 	public long getPreviousPostId(long postId);
 	public long getNextPostId(long postId);
 	public List<PostDTO> searchPost(String searchKeyword);
+	public void createComment(CommentDTO commentDTO);
+	public List<CommentDTO> getCommentList(long postId);
 }

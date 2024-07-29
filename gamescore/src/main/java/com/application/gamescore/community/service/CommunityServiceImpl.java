@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.application.gamescore.community.dao.CommunityDAO;
+import com.application.gamescore.community.dto.CommentDTO;
 import com.application.gamescore.community.dto.PostDTO;
 import com.application.gamescore.user.dto.UserDTO;
 
@@ -79,6 +80,16 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public List<PostDTO> searchPost(String searchKeyword) {
 		return communityDAO.searchPost(searchKeyword);
+	}
+
+	@Override
+	public void createComment(CommentDTO commentDTO) {
+		communityDAO.createComment(commentDTO);
+	}
+
+	@Override
+	public List<CommentDTO> getCommentList(long postId) {
+		return communityDAO.getCommentList(postId);
 	}
 
 }

@@ -95,6 +95,32 @@
 		ORDER BY TITLE DESC
 	</select>
 	
+	<insert id="createComment" parameterType="CommentDTO">
+		INSERT INTO 
+		COMMENT(
+			COMMENT_ID,
+			POST_ID,
+			USER_ID,
+			USER_NM,
+			CONTENT,
+			CREATED_AT,
+			UPDATED_AT
+		)
+		VALUE(
+			#{commentId},
+			#{postId},
+			#{userId},
+			#{userNm},
+			#{content},
+			NOW(),
+			NOW()
+		)
+	</insert>
 	
+	<select id="getCommentList" parameterType="long" resultType="CommentDTO">
+		SELECT *
+		FROM COMMENT
+		WHERE POST_ID = #{postId}
+	</select>
 	
 </mapper>
