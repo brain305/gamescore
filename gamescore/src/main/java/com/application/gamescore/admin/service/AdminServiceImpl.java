@@ -37,8 +37,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public GameDTO getGameDetail(long gameId) {
-		adminDAO.getGameDetail(gameId);
-		return null;
+		return adminDAO.getGameDetail(gameId);
 	}
 
 	@Override

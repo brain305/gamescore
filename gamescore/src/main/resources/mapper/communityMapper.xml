@@ -8,6 +8,13 @@
 		FROM POST
 	</select>
 	
+	<select id="getPostListDesc" resultType="PostDTO">
+		SELECT *
+		FROM POST
+		ORDER BY POST_ID DESC
+		LIMIT 4
+	</select>
+	
 	<insert id="insertPost" parameterType="PostDTO">
 		INSERT INTO 
 		POST (
@@ -66,6 +73,18 @@
 		WHERE POST_ID = #{postId}
 	</delete>
 	
+	<update id="updatePost" parameterType="PostDTO">
+		UPDATE POST
+		SET 
+			TITLE = #{title},
+			CONTENT = #{content},
+			UPDATED_AT = NOW(),
+			POST_IMG_NM = #{postImgNm}
+			
+		WHERE POST_ID = #{postId}	
+	</update>
+	
+	
 	<select id="getPostDTO" parameterType="long" resultType="PostDTO">
 		SELECT *
 		FROM POST
@@ -122,5 +141,12 @@
 		FROM COMMENT
 		WHERE POST_ID = #{postId}
 	</select>
+	
+	<delete id="deleteComment" parameterType="long">
+		
+		DELETE FROM COMMENT
+		WHERE POST_ID = #{postId}
+	
+	</delete>
 	
 </mapper>

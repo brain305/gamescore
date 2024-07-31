@@ -127,8 +127,10 @@
 								<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 							</ul>
 							<p th:text="${gameDTO.description}">엘든링 설명~~</p>
-
-
+							
+							<th:block th:if="${session.role == 'admin'}">
+								<a th:href="@{/admin/updateGame(gameId=${gameDTO.gameId})}">Admin Update Game</a>
+							</th:block>
 						</div>
 					</div>
 				</div>

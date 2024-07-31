@@ -92,4 +92,25 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDAO.getCommentList(postId);
 	}
 
+	@Override
+	public List<PostDTO> getPostListDesc() {
+		return communityDAO.getPostListDesc();
+	}
+
+	@Override
+	public void deleteComment(long postId) {
+		communityDAO.deleteComment(postId);
+	}
+
+	@Override
+	public void updatePost(PostDTO postDTO, MultipartFile upFile) throws IllegalStateException, IOException {
+		if(!upFile.isEmpty()) {
+			
+			String uploadFileName = UUID.randomUUID() + "_" + upFile.getOriginalFilename();
+			upFile.transferTo(new File(fileRepositoryPath + uploadFileName));
+			postDTO.setPostImgNm(uploadFileName);
+		}
+		communityDAO.updatePost(postDTO);
+	}
+
 }

@@ -118,7 +118,7 @@
 											<li th:text="|작성자 : ${post.userNm}|">작성자<i
 												class="lnr lnr-user"></i>
 											</li>
-											<li th:text="|작성일 : ${post.createdAt}|">작성일</li>
+											<li th:text="|작성일 : ${post.updatedAt}|">작성일</li>
 											<li th:text="|조회수 : ${post.readCnt}|">조회수</li>
 										</ul>
 									</div>
@@ -190,43 +190,19 @@
 							</aside>
 
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title">Popular Posts</h3>
-								<div class="media post_item">
-									<img src="/img/blog/popular-post/post1.jpg" alt="post">
-									<div class="media-body">
-										<a href="single-blog">
-											<h3>Space The Final Frontier</h3>
-										</a>
-										<p>02 Hours ago</p>
+								<h3 class="widget_title">New Posts</h3>
+								<th:block th:each="post : ${postListDesc}">
+									<div class="media post_item">
+										<img src="/img/blog/popular-post/post1.jpg" alt="post">
+										<div class="media-body">
+											<a href="single-blog">
+												<h3 th:text="${post.title}">Space The Final Frontier</h3>
+											</a>
+											<p th:text="${post.createdAt}">02 Hours ago</p>
+										</div>
 									</div>
-								</div>
-								<div class="media post_item">
-									<img src="/img/blog/popular-post/post2.jpg" alt="post">
-									<div class="media-body">
-										<a href="single-blog">
-											<h3>The Amazing Hubble</h3>
-										</a>
-										<p>02 Hours ago</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="/img/blog/popular-post/post3.jpg" alt="post">
-									<div class="media-body">
-										<a href="single-blog">
-											<h3>Astronomy Or Astrology</h3>
-										</a>
-										<p>03 Hours ago</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="/img/blog/popular-post/post4.jpg" alt="post">
-									<div class="media-body">
-										<a href="single-blog">
-											<h3>Asteroids telescope</h3>
-										</a>
-										<p>01 Hours ago</p>
-									</div>
-								</div>
+								</th:block>
+								
 								<div class="br"></div>
 							</aside>
 							<aside class="single_sidebar_widget ads_widget">

@@ -4,7 +4,8 @@
 	layout:decorate="~{common/layout.html}">
 <head>
 <meta charset="UTF-8">
-
+<script>
+</script>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -35,8 +36,9 @@
 					<div class="row">
 						<div class="col-lg-8">
 							<h3>Insert Game Details</h3>
-							<form class="row contact_form" th:action="@{/admin/insertGame}" method="post"
-								enctype="multipart/form-data" novalidate="novalidate">
+							<form class="row contact_form" th:action="@{/admin/insertGame}"
+								method="post" enctype="multipart/form-data"
+								novalidate="novalidate">
 								<div class="col-md-12 form-group">
 									<input type="text" required class="form-control" id="title"
 										name="title" placeholder="Game Title">
@@ -63,35 +65,37 @@
 										placeholder="steamdeckCompatibility">
 								</div>
 								<div class="col-md-12 form-group p_star">
-									<input type="text" required class="form-control" id="genre" name="genre"
-										placeholder="genre">
+									<input type="text" required class="form-control" id="genre"
+										name="genre" placeholder="genre">
 								</div>
 								<div class="col-md-12 form-group p_star">
 									<input type="text" required class="form-control" id="player"
 										name="player" placeholder="player">
 								</div>
 								<div class="col-md-12 form-group p_star">
-									<input type="text" required class="form-control" id="modes" name="modes"
-										placeholder="modes">
+									<input type="text" required class="form-control" id="modes"
+										name="modes" placeholder="modes">
 								</div>
 								<div class="col-md-12 form-group">
 									<input type="text" class="form-control" id="description"
 										name="description" placeholder="description">
 								</div>
 								<div class="col-md-12 form-group">
-									<input type="text" required class="form-control" id="purchaseLk"
-										name="purchaseLk" placeholder="Purchase Link">
+									<input type="text" required class="form-control"
+										id="purchaseLk" name="purchaseLk" placeholder="Purchase Link">
 								</div>
 								<div class="text-center">
-									<input type="file" required class="button button-paypal" id="upFile" name="upFile">
+									<input type="file" required class="button button-paypal"
+										id="upFile" name="upFile">
 								</div>
 								<hr>
 								<div class="text-center">
-									<input type="submit" class="button button-paypal" value="Insert Game">
+									<input type="submit" class="button button-paypal"
+										value="Insert Game">
 								</div>
 							</form>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>

@@ -12,6 +12,7 @@ import com.application.gamescore.user.dto.UserDTO;
 public interface CommunityDAO {
 	
 	public List<PostDTO> getPostList();
+	public List<PostDTO> getPostListDesc();
 	public void insertPost(PostDTO postDTO);
 	public PostDTO getPostDetail(long postId);
 	public UserDTO getUserDTO(long userId);
@@ -24,4 +25,6 @@ public interface CommunityDAO {
 	public List<PostDTO> searchPost(String searchKeyword);
 	public void createComment(CommentDTO commentDTO);
 	public List<CommentDTO> getCommentList(long postId);
+	public void deleteComment(long postId);
+	public void updatePost(PostDTO postDTO);
 }

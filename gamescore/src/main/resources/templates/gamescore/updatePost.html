@@ -50,11 +50,10 @@
 				<div class="order_details_table">
 					<div class="board_post_form">
 						<h2>게시판 작성</h2>
-						<form th:action="@{/community/insertPost}" method="post"
+						<form th:action="@{/community/updatePost}" method="post" th:object="${postDTO}"
 							enctype="multipart/form-data">
-							<input type="hidden" id="userId" name="userId"
-								th:value="${session.userId}"> <input type="hidden"
-								id="userNm" name="userNm" th:value="${session.userNm}">
+							<input type="hidden" id="postId" name="postId"
+								th:value="${postDTO.postId}">
 							<div class="form-group">
 								<label for="title">제목:</label> <input type="text" th:field="*{title}" id="title"
 									name="title" class="form-control" required>
@@ -62,7 +61,7 @@
 							<div class="form-group">
 								<label for="content">내용:</label>
 								<textarea id="content" name="content" class="form-control"
-									required th:text="${postDTO.content}"></textarea>
+									required th:text="*{content}"></textarea>
 								<script>
 									CKEDITOR.replace("content");
 								</script>

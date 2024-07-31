@@ -11,6 +11,7 @@ import com.application.gamescore.user.dto.UserDTO;
 
 public interface CommunityService {
 	public List<PostDTO> getPostList();
+	public List<PostDTO> getPostListDesc();
 	public void insertPost(PostDTO postDTO, MultipartFile upFile) throws IllegalStateException, IOException;
 	public PostDTO getPostDetail(long postId);
 	public UserDTO getUserDTO(long userId);
@@ -22,4 +23,6 @@ public interface CommunityService {
 	public List<PostDTO> searchPost(String searchKeyword);
 	public void createComment(CommentDTO commentDTO);
 	public List<CommentDTO> getCommentList(long postId);
+	public void deleteComment(long postId);
+	public void updatePost(PostDTO postDTO, MultipartFile upFile) throws IllegalStateException, IOException;
 }

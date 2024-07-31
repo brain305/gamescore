@@ -38,7 +38,7 @@
 		)
 	</insert>
 	
-	<select id="getGameDetail" parameterType="int" resultType="GameDTO">
+	<select id="getGameDetail" parameterType="long" resultType="GameDTO">
 		SELECT *
 		FROM GAME
 		WHERE GAME_ID = #{gameId}

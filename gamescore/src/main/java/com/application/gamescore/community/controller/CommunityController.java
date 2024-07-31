@@ -30,7 +30,10 @@ public class CommunityController {
 
 		List<PostDTO> postList = communityService.getPostList();
 		model.addAttribute("postList", postList);
-
+		
+		List<PostDTO> postListDesc = communityService.getPostListDesc();
+		model.addAttribute("postListDesc", postListDesc);
+		
 		return "gamescore/community";
 	}
 
@@ -77,7 +80,7 @@ public class CommunityController {
 					location.href='/community/main';
 				</script>
 				""";
-
+		communityService.deleteComment(postId);
 		communityService.deletePost(postId);
 
 		return jsScript;
@@ -87,8 +90,23 @@ public class CommunityController {
 	public String updatePost(@RequestParam("postId") long postId, Model model) {
 		
 		model.addAttribute("postDTO", communityService.getPostDTO(postId));
-		
 		return "gamescore/updatePost";
+	}
+	
+	@PostMapping("/updatePost")
+	@ResponseBody
+	public String updatePost(@ModelAttribute PostDTO postDTO, @RequestParam("upFile") MultipartFile upFile) throws IllegalStateException, IOException {
+		
+		communityService.updatePost(postDTO, upFile);
+		String jsScript = """
+				<script>
+					 alert('게시글이 수정되었습니다.');
+					location.href='/community/main';
+				</script>
+				""";
+		
+		
+		return jsScript;
 	}
 	
 	@GetMapping("/search")

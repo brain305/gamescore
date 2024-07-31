@@ -104,7 +104,8 @@ public class AdminController {
 
 	@GetMapping("/updateGame")
 	public String updateGame(Model model, @RequestParam("gameId") long gameId) {
-
+		System.out.println(gameId);
+		System.out.println(adminService.getGameDetail(gameId));
 		model.addAttribute("gameDTO", adminService.getGameDetail(gameId));
 		return "admin/updateGame";
 	}

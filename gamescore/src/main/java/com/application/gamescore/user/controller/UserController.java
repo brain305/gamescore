@@ -64,6 +64,7 @@ public class UserController {
 			HttpSession session = request.getSession();
 			session.setAttribute("userNm", userDTO.getUserNm());
 			session.setAttribute("userId", userId);
+			session.setAttribute("role", "user");
 			session.setMaxInactiveInterval(60 * 30);
 
 			jsScript = """
