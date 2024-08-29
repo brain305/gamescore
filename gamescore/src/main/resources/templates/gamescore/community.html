@@ -193,7 +193,7 @@
 								<h3 class="widget_title">New Posts</h3>
 								<th:block th:each="post : ${postListDesc}">
 									<div class="media post_item">
-										<img src="/img/blog/popular-post/post1.jpg" alt="post">
+										<img th:src="@{/img/blog/popular-post/post1.jpg}" alt="post">
 										<div class="media-body">
 											<a href="single-blog">
 												<h3 th:text="${post.title}">Space The Final Frontier</h3>
@@ -202,12 +202,12 @@
 										</div>
 									</div>
 								</th:block>
-								
+
 								<div class="br"></div>
 							</aside>
 							<aside class="single_sidebar_widget ads_widget">
-								<a href="#"> <img class="img-fluid" src="/img/blog/add.jpg"
-									alt="">
+								<a href=""> <img class="img-fluid"
+									th:src="@{/img/blog/add.jpg}" alt="">
 								</a>
 								<div class="br"></div>
 							</aside>
@@ -225,12 +225,12 @@
 					<a class="btn theme_btn" href="#">Follow us on instagram</a>
 				</div>
 				<div class="instagram_image row m0">
-					<a href="#"><img src="/img/instagram/ins-1.jpg" alt=""></a> <a
-						href="#"><img src="/img/instagram/ins-2.jpg" alt=""></a> <a
-						href="#"><img src="/img/instagram/ins-3.jpg" alt=""></a> <a
-						href="#"><img src="/img/instagram/ins-4.jpg" alt=""></a> <a
-						href="#"><img src="/img/instagram/ins-5.jpg" alt=""></a> <a
-						href="#"><img src="/img/instagram/ins-6.jpg" alt=""></a>
+					<a th:href="@{/}"><img th:src="@{/img/instagram/ins-1.jpg}" alt=""></a>
+					<a th:href="@{/}"><img th:src="@{/img/instagram/ins-2.jpg}" alt=""></a>
+					<a th:href="@{/}"><img th:src="@{/img/instagram/ins-3.jpg}" alt=""></a>
+					<a th:href="@{/}"><img th:src="@{/img/instagram/ins-4.jpg}" alt=""></a>
+					<a th:href="@{/}"><img th:src="@{/img/instagram/ins-5.jpg}" alt=""></a>
+					<a th:href="@{/}"><img th:src="@{/img/instagram/ins-6.jpg}" alt=""></a>
 				</div>
 			</div>
 		</section>
